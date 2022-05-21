@@ -1,0 +1,57 @@
+<mat-tab-group mat-align-tabs="left" style="margin-left: 30px;">
+    <mat-tab label="Add new Acoount">
+        <div class="card" style="background-color:none">
+            <form (ngSubmit)="addUser()" [formGroup]="addUserForm">
+                <input type="text" name="firstName" id="firstName" placeholder="Enter First Name"
+                    class="form-control mb-3" formControlName="firstName">
+                <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name" class="form-control mb-3"
+                    formControlName="lastName">
+                <input type="text" name="username" id="username" placeholder="Enter username" class="form-control mb-3"
+                    formControlName="username">
+                <input type="number" name="mobile" id="mobile" placeholder="Enter Mobile Number"
+                    class="form-control mb-3" formControlName="mobile">
+                <input type="email" name="emailId" placeholder="Enter Email Address" class="form-control mb-3"
+                    formControlName="emailId">
+                <input type="password" name="userPassword" id="userPassword" placeholder="Enter password"
+                    class="form-control mb-3" formControlName="password">
+
+                <input type="submit" value="Add User" class="btn btn-primary rounded-2">
+            </form>
+        </div>
+    </mat-tab>
+    <mat-tab label="Add New Flight">
+
+        <div class="card" style="padding: 20px; width: 500px; margin-top: 20px;">
+            <form (ngSubmit)="addFlight()" [formGroup]="addFlightDetailsForm">
+                <span style="margin-bottom: 20px">
+                    <h2>Add New Flight</h2>
+                </span>
+                <input type="text" name="id" id="id" placeholder="Enter Flight ID" class="form-control mb-3"
+                    formControlName="id">
+                <input type="text" name="flightNumber" id="flightNumber" placeholder="Enter Flight Number"
+                    class="form-control mb-3" formControlName="flightNumber">
+                <input type="text" name="source" id="source" placeholder="Enter Flight Source" class="form-control mb-3"
+                    formControlName="source">
+                <input type="text" name="destination" id="destination" placeholder="Enter Flight Destination"
+                    class="form-control mb-3" formControlName="destination">
+                <input type="date" name="date" id="date" placeholder="Enter Flight Date" class="form-control mb-3"
+                    formControlName="date">
+                <input type="number" name="fare" id="fare" placeholder="Enter Flight Fare" class="form-control mb-3"
+                    formControlName="fare">
+
+                    <input type="submit" value="Add Flight" class="btn btn-primary rounded-2">
+            </form>
+        </div>
+        <!-- <div  *ngIf="deletePage == true" class="card" style="padding: 20px; width: 500px; margin-top: 20px">
+            <form (ngSubmit)="deleteFlight()" [formGroup]="deleteFlightDetailsForm">
+                <span style="margin-bottom: 20px">
+                    <h2>Delete Flight</h2>
+                </span>
+                <input type="text" name="flightNumber" id="flightNumber" placeholder="Enter Flight Number"
+                    class="form-control mb-3" formControlName="flightNumber">
+                    <input type="submit" value="Delete Flight" class="btn btn-primary rounded-2">
+            </form>
+        </div> -->
+    </mat-tab>
+    
+</mat-tab-group>

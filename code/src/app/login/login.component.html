@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <div class="card" style="padding: 20px;">
+<h1> Login YourSelf</h1>
+
+        <form  (ngSubmit)="login()" [formGroup]="loginForm">
+            <input type="text"
+            name="username"
+            id="username"
+            placeholder="username"
+            class="form-control mb-3"
+            formControlName="username"
+            >
+
+            <input type="password"
+            name="userPassword"
+            id="userPassword"
+            placeholder="password"
+            class="form-control mb-3"
+            formControlName="password"
+            >
+
+            <input type="submit"
+            value="Login"
+            class="btn btn-success rounded-0">
+        </form>
+    </div>
+</div>

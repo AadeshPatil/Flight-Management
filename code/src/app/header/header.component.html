@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/">FLIGHT BOOKING</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" >
+                    <a class="nav-link active text-dark" routerLink="/aboutUs" aria-current="page" >About Us</a>
+                </li>
+                
+                <li class="nav-item">
+                    <button class="btn btn-primary" routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">Go to
+                        Admin Dashboard</button>
+                </li>
+                <li class="tel" *ngIf="userService.roleMatch(['User'])">
+                    <a class="nav-link active text-dark" href="tel:+4733378901"><mat-icon>phone</mat-icon> +91 1236547898</a>
+                </li>
+            </ul>
+            <button mat-button *ngIf="! isLoggedIn()" style="color:black" routerLink="/login">LOGIN </button>
+            <button mat-button style="color:black" *ngIf="! isLoggedIn()" routerLink="/register">SIGN UP</button>
+            <button mat-button *ngIf="isLoggedIn()" [matMenuTriggerFor]="beforeMenu" style="color: black">
+                {{userData.username}}<mat-icon>expand_more</mat-icon> 
+            </button>
+            <mat-menu #beforeMenu="matMenu" xPosition="before">
+                <button mat-menu-item *ngIf="!userService.roleMatch(['User'])" routerLink="/flight-details">
+                    <mat-icon>airplanemode_active</mat-icon> All Flights
+                </button>
+                <button mat-menu-item routerLink="/user" *ngIf="userService.roleMatch(['User'])">
+                    <mat-icon> man</mat-icon> User Profile</button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon> cancel_presentation</mat-icon> Logout
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+</nav>

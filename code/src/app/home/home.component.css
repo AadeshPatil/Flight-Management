@@ -1,0 +1,39 @@
+
+.example-full-width {
+    width: 250px;
+}
+.example-full {
+    margin: 0 2px;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-card{
+  background-color: rgba(245, 245, 245, 0.4); 
+  width: auto;
+}
+
+mat-card-title{
+  text-shadow: blue;
+  font-size: large;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: auto;
+  padding: 30px;
+  background-color: rgba(245, 245, 245, 0.4); 
+  margin-top: 30px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

@@ -1,0 +1,27 @@
+<div style="display:flex; align-items: center; justify-content: center;">
+    <mat-card style="width: 80%; margin-top: 20px">
+        <mat-card-header style="text-align: center; display:flex; align-items: center; justify-content: center;">
+            <mat-card-title>Airport Details</mat-card-title>
+            <mat-card-subtitle>All Airports Data available here.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.airportCode}} </td>
+                </ng-container>
+                <ng-container matColumnDef="flightNumber">
+                    <th mat-header-cell *matHeaderCellDef> Airport Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.airportName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="source">
+                    <th mat-header-cell *matHeaderCellDef> Airport City </th>
+                    <td mat-cell *matCellDef="let element"> {{element.airportLocation}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>

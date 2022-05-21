@@ -1,0 +1,27 @@
+<div style="display: flex; align-items: center; margin-left: 40px;">
+
+    <div class="card" style="padding: 20px;">
+        <div class="header my-2" style="text-align: center;">
+            <h3>
+                <b>SIGN UP</b>
+            </h3>
+        </div>
+        <form (ngSubmit)="addUser()" [formGroup]="addUserForm">
+        
+            <input type="text" name="firstName" id="firstName" placeholder="First Name" class="form-control mb-3"
+                formControlName="firstName">
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name" class="form-control mb-3"
+                formControlName="lastName">
+            <input type="text" name="username" id="username" placeholder="UserName" class="form-control mb-3"
+                formControlName="username">
+            <input type="number" name="mobile" id="mobile" placeholder="Mobile Number" class="form-control mb-3"
+                formControlName="mobile">
+            <input type="email" name="emailId" id="mobile" placeholder="Email Address" class="form-control mb-3"
+                formControlName="emailId">
+            <input type="password" name="userPassword" id="userPassword" placeholder="Password"
+                class="form-control mb-3" formControlName="password">
+
+            <input type="submit" value="Create New Account" class="btn btn-primary rounded-0">
+        </form>
+    </div>
+</div>

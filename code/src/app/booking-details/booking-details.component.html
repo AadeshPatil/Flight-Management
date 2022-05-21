@@ -1,0 +1,52 @@
+<div style="display:flex; align-items: center;  margin-left: 20px;">
+    <mat-card style="width: 800px; margin-top: 20px">
+        <mat-card-header style="text-align: center; display:flex; align-items: center; justify-content: center;">
+            <mat-card-title>Booking Confirmation</mat-card-title>
+            <mat-card-subtitle>Go through the details and finalise your booking for a safe and happy trip.
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list cols="2" rowHeight="250px">
+                <mat-grid-tile colspan="1" rowspan="1">
+                    <div style="position: absolute; top: 0; width: 300px; text-align: center">
+                        <h1>Flight Details</h1>
+                        <div style=" text-align: left;">
+                            <b>Flight Number : </b> {{ data["flight-details"].flightNumber }}<br><br>
+                            <b>Flight Source : </b> {{ data["flight-details"].source }}<br><br>
+                            <b>Flight Destination : </b> {{ data["flight-details"].destination }}<br><br>
+                            <b>Flight Date : </b> {{ data["flight-details"].date }}<br><br>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1" rowspan="1">
+                    <div style="position: absolute; top: 0; text-align: center">
+                        <h1>Passenger Details</h1>
+                        <div style="height: 150px; overflow-y: scroll; width: 300px; text-align: left">
+                            <span *ngIf="data['passenger-details'].length === 0">No Passengers added.</span>
+                            <span *ngFor="let p of data['passenger-details']">
+                                <mat-grid-list cols="2" rowHeight="50px">
+                                    <mat-grid-tile colspan="1" rowspan="1">
+                                        <div style="text-align: left;">
+                                            <b>Name : </b> {{p.firstName + ' ' + p.lastName}}<br>
+                                            <b>Gender : </b> {{p.gender}}<br>
+                                        </div>
+                                    </mat-grid-tile>
+                                    <mat-grid-tile colspan="1" rowspan="1">
+                                        <button mat-button (click)="deletePassenge(p)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </span>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+        <mat-card-footer
+            style="text-align: center; display:flex; align-items: center; justify-content: center; margin-bottom: 20px">
+            <button mat-flat-button color="primary" style="width: 200px; height: 50px" (click)="goToPayments()">Go to
+                Payment</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

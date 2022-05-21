@@ -1,0 +1,62 @@
+<div *ngIf="showLoading" style="position: absolute; top:50%; left: 50%; transform: translateX(-50%) translateY(-50%)">
+    <mat-card style="width: 400px; height: 350px; text-align: center">
+        <mat-card-header style="text-align: center; display:flex; align-items: center; justify-content: center;">
+            <mat-card-title>Booking your flight.</mat-card-title>
+            <mat-card-subtitle>Please wait while we complete the process.
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div style="margin: 40px 0; position: absolute; left: 50%; transform: translateX(-50%)">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 30px">
+                <mat-card-subtitle>{{message}}</mat-card-subtitle>
+            </div>
+            <mat-progress-bar class="example-margin" [color]="color" [mode]="mode" [value]="value"
+                [bufferValue]="bufferValue"
+                style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 20px">
+            </mat-progress-bar>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div *ngIf="!showLoading" style="display:flex; align-items: center; justify-content: center;">
+    <mat-card style="width: 800px; margin-top: 20px">
+        <mat-card-header style="text-align: center; display:flex; align-items: center; justify-content: center;">
+            <mat-card-title>Booking Successful</mat-card-title>
+            <mat-card-subtitle>Please find below the confirmed details of your booked flight.
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list cols="2" rowHeight="250px">
+                <mat-grid-tile colspan="1" rowspan="1">
+                    <div style="position: absolute; top: 0; width: 300px; text-align: center">
+                        <h1>Flight Details</h1>
+                        <div style=" text-align: left;">
+                            <b>Flight Number : </b> {{ data["flight-details"].flightNumber }}<br><br>
+                            <b>Flight Source : </b> {{ data["flight-details"].source }}<br><br>
+                            <b>Flight Destination : </b> {{ data["flight-details"].destination }}<br><br>
+                            <b>Flight Date : </b> {{ data["flight-details"].date }}<br><br>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1" rowspan="1">
+                    <div style="position: absolute; top: 0; text-align: center">
+                        <h1>Other Details</h1>
+                        <div style=" text-align: left;">
+                            <b>Booker Username : </b> {{ userData.username }}<br><br>
+                            <b>Total Passengers : </b> {{ data["passenger-details"].length }}<br><br>
+                            <b>Payment Mode : </b> {{ data.paymentMethod }}<br><br>
+                            <b>Total Fare </b> {{ data.fare }}<br><br>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+        <mat-card-footer
+            style="text-align: center; display:flex; align-items: center; justify-content: center; margin-bottom: 20px">
+            <button mat-flat-button color="primary" style="width: 200px; height: 50px" (click)="goToHome()">Create
+                Another Booking</button>
+        </mat-card-footer>
+    </mat-card>
+</div>

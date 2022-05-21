@@ -1,0 +1,41 @@
+<div style="display:flex; align-items: center; margin-left: 20px;">
+    <mat-card style="width: 800px; margin-top: 20px" class="card">
+        <mat-card-header style="text-align: center; display:flex; align-items: center; justify-content: center;">
+            <mat-card-title>Payment Gateway</mat-card-title>
+            <mat-card-subtitle>Select the option that best suits you.
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list cols="2" rowHeight="350px">
+                <mat-grid-tile colspan="1" rowspan="1">
+                    <div style="position: absolute; top: 0; width: 100%; text-align: left;">
+                        <label id="example-radio-group-label">Pick your payment option.</label>
+                        <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                            [(ngModel)]="paymentMethod" style=" display: flex; flex-direction: column;">
+                            <mat-radio-button class=" example-radio-button" *ngFor="let p of paymentOptions"
+                                [value]="p">
+                                <mat-card style="width: 350px;">
+                                    {{p}}
+                                </mat-card><br>
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="1" rowspan="1">
+                    <div style=" display: flex; flex-direction: column;">
+                        <span><b>Fare Cost per passenger : </b> {{this.data["flight-details"].fare}}</span><br>
+                        <span><b>Total passengers : </b> {{this.data["passenger-details"].length}}</span><br>
+                        <span><b>Total Cost : </b> {{ this.data["flight-details"].fare *
+                            this.data["passenger-details"].length }}</span>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+        <mat-card-footer
+            style="text-align: center; display:flex; align-items: center; justify-content: center; margin-bottom: 20px">
+            <button mat-flat-button color="primary" style="width: 200px; height: 50px" (click)="confirmBooking()">
+                <mat-icon>lock</mat-icon> Pay Securely
+            </button>
+        </mat-card-footer>
+    </mat-card>
+</div>

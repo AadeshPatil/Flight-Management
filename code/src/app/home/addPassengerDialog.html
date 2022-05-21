@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Add Passenger Details</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="passengerData">
+        <mat-form-field class="example-full" appearance="fill">
+            <mat-label>Enter Firstname</mat-label>
+            <input matInput placeholder="Enter firstname" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field class="example-full" appearance="fill">
+            <mat-label>Enter Lastname</mat-label>
+            <input matInput placeholder="Enter lastname" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Select Gender</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option value="Male">
+                    Male
+                </mat-option>
+                <mat-option value="Female">
+                    Female
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-button (click)="addPassenger()">Add</button>
+    </form>
+    <mat-card style="width: 100%; margin-top: 20px">
+        <mat-card-header style="text-align: center; display:flex; align-items: center; justify-content: center;">
+            <mat-card-title>Passenger List</mat-card-title>
+            <mat-card-subtitle>The passenger details are required to book the seats.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content style="height: 250px; overflow-y: scroll">
+            <h5 *ngIf="passengerDataArray.length === 0">No Passengers added yet.</h5>
+            <mat-card style="width: 100%; margin-top: 10px" *ngFor="let passenger of passengerDataArray">
+                <mat-card-subtitle><b>Passenger Name</b> : {{passenger.firstName+' '+ passenger.lastName}}
+                </mat-card-subtitle>
+                <mat-card-subtitle><b>Gender</b> : {{passenger.gender}}</mat-card-subtitle>
+                <button mat-flat-button color="primary" (click)="deletePassenger(passenger)">Delete</button>
+            </mat-card>
+        </mat-card-content>
+    </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="goToBookingDetails()">Proceed</button>
+</mat-dialog-actions>
+
+
+<style>
+    .mat-dialog-container{
+        background-color: rgba(180, 187, 189, 0.4);
+    }
+</style>

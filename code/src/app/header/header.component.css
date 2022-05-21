@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+navbar{
+    color:black;
+    }
+.navbar-brand{
+    font-size: large;
+    font-family:'Sriracha', cursive;
+    font-weight: bold;
+    color: black;
+
+}
+.tel{
+    text-align: center;
+}

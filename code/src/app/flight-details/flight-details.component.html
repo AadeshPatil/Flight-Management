@@ -1,0 +1,105 @@
+<div style="display:flex; align-items: center; justify-content: center;">
+    <mat-card style="width: 80%; margin-top: 20px">
+        <mat-card-header style="text-align: center; display:flex; align-items: center; justify-content: center;">
+            <mat-card-title>Flight Details</mat-card-title>
+            <mat-card-subtitle>All flight Data available here.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="flightNumber">
+                    <th mat-header-cell *matHeaderCellDef> Flight Number </th>
+                    <td mat-cell *matCellDef="let element"> {{element.flightNumber}} </td>
+                </ng-container>
+                <ng-container matColumnDef="source">
+                    <th mat-header-cell *matHeaderCellDef> Source </th>
+                    <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+                </ng-container>
+                <ng-container matColumnDef="destination">
+                    <th mat-header-cell *matHeaderCellDef> Destination </th>
+                    <td mat-cell *matCellDef="let element"> {{element.destination}} </td>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                </ng-container>
+                <ng-container matColumnDef="fare">
+                    <th mat-header-cell *matHeaderCellDef> Fare </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fare}} </td>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="selectedFlightsave(element)">
+                            Update
+                        </button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef> Delete </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <button type="button" class="btn btn-danger" (click)="deleteFlight(element.flightNumber)">
+                        Delete
+                    </button>    
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Flight</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form (ngSubmit)="updateFlight()" [formGroup]="updateFlightData">
+                 
+                    <mat-form-field appearance="fill">
+                        <mat-label>ID</mat-label>
+                        <input matInput formControlName="id">
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field appearance="fill">
+                        <mat-label>Flight_No</mat-label>
+                        <input matInput formControlName="flightNumber">
+                    </mat-form-field> 
+                    <mat-form-field appearance="fill">
+                        <mat-label>Source</mat-label>
+                        <input matInput formControlName="source">
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field appearance="fill">
+                        <mat-label>Destination</mat-label>
+                        <input matInput formControlName="destination">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Date</mat-label>
+                        <input matInput formControlName="date">
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field appearance="fill">
+                        <mat-label>Fare</mat-label>
+                        <input matInput formControlName="fare">
+                    </mat-form-field>
+                      
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="submit" value="Save Changes" class="btn btn-primary rounded-2">
+            </div>
+        </form>
+        </div>
+        </div>
+    </div>
+</div>
