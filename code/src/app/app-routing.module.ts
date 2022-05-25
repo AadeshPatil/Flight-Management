@@ -14,6 +14,7 @@ import { BookingStatusComponent } from './booking-status/booking-status.componen
 import { AirportDetailsComponent } from './airport-details/airport-details.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { UserBookingComponent } from './user-booking/user-booking.component';
+import { ShowTicketComponent } from './show-ticket/show-ticket.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -22,7 +23,7 @@ const routes: Routes = [
     { path: 'booking-status', component: BookingStatusComponent, canActivate: [AuthGuard], data: { roles: ['User', 'Admin'] } },
     { path: 'payment-gateway', component: PaymentGatewayComponent, canActivate: [AuthGuard], data: { roles: ['User', 'Admin'] } },
     { path: 'user-bookings', component: UserBookingComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
-   
+    { path: 'viewticket', component: ShowTicketComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
     { path: 'user', component: UserComponent, canActivate: [AuthGuard], data: { roles: ['User'] } },
     { path: 'login', component: LoginComponent },

@@ -1,6 +1,8 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -10,9 +12,9 @@ import { UserService } from '../_services/user.service';
 })
 export class UserBookingComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService,private _snackBar: MatSnackBar){}
+  constructor(private formBuilder: FormBuilder,private router: Router, private userService: UserService,private _snackBar: MatSnackBar){}
     
-  displayedColumns: string[] = ['id', 'flightNumber', 'source', 'destination', 'date','noOfPassenger', 'fare','status','cancle'];
+  displayedColumns: string[] = ['id', 'flightNumber', 'source', 'destination', 'date','noOfPassenger', 'fare','status','cancle','viewticket'];
   userData =  JSON.parse(localStorage.getItem('userData') || "{}");
  
  
@@ -21,6 +23,15 @@ export class UserBookingComponent implements OnInit {
   public bookingData!: FormGroup;
   selectedFlight :any;
   openSnackBar: any;
+  showTickets:boolean = true;
+
+  selectedTicket :any = {
+    from :'',
+    where :'',
+    bookingDate:'',
+    fare :''
+
+  };
 
   ngOnInit(): void {
     var userId = this.userData.username;  
@@ -79,5 +90,11 @@ export class UserBookingComponent implements OnInit {
     );
       }
 
+  }
+
+
+  viewTicket(element :any){
+    console.log(element);
+    this.selectedTicket = element;
   }
 }

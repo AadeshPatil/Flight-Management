@@ -44,6 +44,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AirportDetailsComponent } from './airport-details/airport-details.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { UserBookingComponent } from './user-booking/user-booking.component';
+import { ShowTicketComponent } from './show-ticket/show-ticket.component';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,8 @@ import { UserBookingComponent } from './user-booking/user-booking.component';
         BookingStatusComponent,
         AirportDetailsComponent,
         AboutUsComponent,
-        UserBookingComponent
+        UserBookingComponent,
+        ShowTicketComponent
 
     ],
     imports: [
