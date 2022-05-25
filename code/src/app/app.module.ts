@@ -43,6 +43,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { AirportDetailsComponent } from './airport-details/airport-details.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { UserBookingComponent } from './user-booking/user-booking.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +61,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
         PaymentGatewayComponent,
         BookingStatusComponent,
         AirportDetailsComponent,
-        AboutUsComponent
+        AboutUsComponent,
+        UserBookingComponent
+
     ],
     imports: [
         BrowserModule,

@@ -65,6 +65,18 @@ export class UserService {
         });
     }
 
+    public getBooking(userId:any) {
+        return this.httpclient.get(this.PATH_OF_BOOKING_API + 'readAllBooking/'+userId,{
+            headers: this.requestHeader
+        });
+    }
+
+    public cancleBooking(bookingData: any) {
+        return this.httpclient.put(this.PATH_OF_BOOKING_API +'updateBooking', bookingData, {
+            headers: this.requestHeader
+        });
+    }
+
     public addFlight(flightData: any) {
         return this.httpclient.post(this.PATH_OF_FLIGHT_DETAILS_API, flightData, {
             headers: this.requestHeader

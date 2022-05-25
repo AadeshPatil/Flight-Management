@@ -1,0 +1,56 @@
+<div style="display:flex; align-items: center; justify-content: center;">
+    <mat-card style="width: 80%; margin-top: 20px">
+        <mat-card-header style="text-align: center; display:flex; align-items: center; justify-content: center;">
+            <mat-card-title>Flight Booking Details</mat-card-title>
+            <mat-card-subtitle>Your all Tickets are Here.</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <table mat-table [dataSource]="dataSource">
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.bookingId}} </td>
+                </ng-container>
+                <ng-container matColumnDef="flightNumber">
+                    <th mat-header-cell *matHeaderCellDef> Flight Number </th>
+                    <td mat-cell *matCellDef="let element"> {{element.flightNumber}} </td>
+                </ng-container>
+                <ng-container matColumnDef="source">
+                    <th mat-header-cell *matHeaderCellDef> Source </th>
+                    <td mat-cell *matCellDef="let element"> {{element.from}} </td>
+                </ng-container>
+                <ng-container matColumnDef="destination">
+                    <th mat-header-cell *matHeaderCellDef> Destination </th>
+                    <td mat-cell *matCellDef="let element"> {{element.where}} </td>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{element.bookingDate}} </td>
+                </ng-container>
+                <ng-container matColumnDef="noOfPassenger">
+                    <th mat-header-cell *matHeaderCellDef> No Of Passengers </th>
+                    <td mat-cell *matCellDef="let element"> {{element.noOfPassengers}} </td>
+                </ng-container>
+                <ng-container matColumnDef="fare">
+                    <th mat-header-cell *matHeaderCellDef> Total Fare </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fare}} </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element"> {{element.currentStatus}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cancle">
+                    <th mat-header-cell *matHeaderCellDef> Cancle Flight </th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <button *ngIf="element.currentStatus == 'upComming'" type="button" class="btn btn-danger" (click)="cancleFlight(element)">
+                        Cancle Booking
+                    </button>    
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+</div>
+

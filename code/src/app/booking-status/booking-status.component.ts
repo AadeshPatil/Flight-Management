@@ -29,9 +29,6 @@ export class BookingStatusComponent implements OnInit {
     constructor(private location: Location, private router: Router, private userService: UserService, private userAuthService: UserAuthService, private _snackBar: MatSnackBar) {
         this.data = this.location.getState();
         this.userData = this.userAuthService.getUserData();
-        if (Object.keys(this.data).length === 1) {
-            this.router.navigate(['']);
-        }
         let d = new Date();
         this.finalBookingId = '' + d.getDate() + d.getMonth() + d.getFullYear() + d.getHours() + d.getMinutes();
 
@@ -42,24 +39,26 @@ export class BookingStatusComponent implements OnInit {
     }
 
     async completeBookingProcess() {
+    
         this.message = 'Finalising the payment by ' + this.data.paymentMethod + ' method.'
         setTimeout(() => {
             this.message = 'Saving the passenger details.'
             setTimeout(() => {
-                this.data['passenger-details'].forEach((p: any, index: Number) => {
-                    p.passengerId = Number(this.finalBookingId + String(index))
-                    this.savePassengerDetails(p);
-                })
+            
                 this.message = 'Completing the booking Process';
                 setTimeout(() => {
                     this.userData = this.userAuthService.getUserData();
                     let d = new Date();
                     let body = {
                         "bookingId": Number(this.finalBookingId),
-                        "bookingDate": d.getMonth() + '-' + ((d.getMonth() + 1) < 10) ? ('0' + (d.getMonth() + 1)) : (d.getMonth() + 1) + '-' + d.getFullYear(),
+                        "bookingDate": this.data["flight-details"].date,
+                        'fare':this.data.fare,
                         "noOfPassengers": this.data['passenger-details'].length,
-                        "bookingUsername": this.userData['username'],
-                        "flightNumber": this.data['flight-details'].flightNumber
+                        "userId": this.userData['username'],
+                        "flightNumber": this.data['flight-details'].flightNumber,
+                        "from":this.data["flight-details"].source,
+                        "where":this.data["flight-details"].destination,
+                        "currentStatus":"upComming"
                     };
                     this.bookFlight(body);
                 }, 3000);

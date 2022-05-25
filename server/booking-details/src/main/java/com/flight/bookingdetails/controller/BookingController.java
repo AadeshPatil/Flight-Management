@@ -1,6 +1,8 @@
 package com.flight.bookingdetails.controller;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.flight.bookingdetails.exceptions.RecordAlreadyPresentException;
 import com.flight.bookingdetails.exceptions.RecordNotFoundException;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin("http://localhost:4200")
@@ -48,13 +52,25 @@ public class BookingController {
 		return "Record has been Added!";
 	}
 
-	@GetMapping("/readAllBooking")
+	
+	@SuppressWarnings("null")
+	@GetMapping("/readAllBooking/{userId}")
 	@Operation(description = "Get Bookings")
 	@ApiResponse(responseCode = "200" , description = "Bookings fetched successfully")
 	@ApiResponse(responseCode = "400" , description = "Bad Request: Occurs when booking isn't present!!")
-	public Iterable<Booking> readAllBookings() {
+	public List<Booking> readAllBookings(@PathVariable("userId") String userId) {
 
-		return bookingService.displayAllBooking();
+		Iterable<Booking> list =  bookingService.displayAllBooking();
+		List<Booking> userBookingList = new ArrayList<Booking>();;
+		
+		list.forEach(item ->{
+			if (item.getUserId().equals(userId)){
+				System.out.println(item.getUserId());
+				userBookingList.add(item);
+			}
+		});
+		return userBookingList;
+		
 	}
 
 	@PutMapping("/updateBooking")

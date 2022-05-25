@@ -7,22 +7,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item" >
-                    <a class="nav-link active text-dark" routerLink="/aboutUs" aria-current="page" >About Us</a>
-                </li>
-                
                 <li class="nav-item">
-                    <button class="btn btn-primary" routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">Go to
+                    <a class="nav-link active text-dark" routerLink="/user-bookings" *ngIf="userService.roleMatch(['User'])">
+                    My Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-primary" routerLink="/admin" *ngIf="userService.roleMatch(['Admin'])">
                         Admin Dashboard</button>
                 </li>
-                <li class="tel" *ngIf="userService.roleMatch(['User'])">
-                    <a class="nav-link active text-dark" href="tel:+4733378901"><mat-icon>phone</mat-icon> +91 1236547898</a>
-                </li>
             </ul>
+            <div class="tel" *ngIf="userService.roleMatch(['User'])">
+                <a class="nav-link active text-dark" style="margin-left: 400px;" href="tel:+4733378901"><mat-icon>phone</mat-icon> +91 1236547898</a>
+            </div>
+            <div class="nav-item" >
+                <a class="nav-link active text-dark" routerLink="/aboutUs" aria-current="page" >About Us</a>
+            </div>
             <button mat-button *ngIf="! isLoggedIn()" style="color:black" routerLink="/login">LOGIN </button>
             <button mat-button style="color:black" *ngIf="! isLoggedIn()" routerLink="/register">SIGN UP</button>
             <button mat-button *ngIf="isLoggedIn()" [matMenuTriggerFor]="beforeMenu" style="color: black">
-                {{userData.username}}<mat-icon>expand_more</mat-icon> 
+             {{userData.username}}<mat-icon>expand_more</mat-icon> 
             </button>
             <mat-menu #beforeMenu="matMenu" xPosition="before">
                 <button mat-menu-item *ngIf="!userService.roleMatch(['User'])" routerLink="/flight-details">
